@@ -1,0 +1,32 @@
+:root {
+    --gameboard-width: 50rem;
+    --gameboard-height: 50rem;
+}
+* {
+    box-sizing: border-box;
+}
+
+.gameboard {
+    margin: auto;
+    margin-top: 5rem;
+    width: var(--gameboard-width);
+    height: var(--gameboard-height);
+    background-color: #473f3f6c;
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+
+.square {
+    width: calc(var(--gameboard-width) / 8);
+    height: calc(var(--gameboard-height) / 8);
+    background-color: aliceblue;
+    color: black;
+    border: #473f3f6c;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-right: #473f3f6c solid 1px;
+    border-bottom: #473f3f6c solid 1px;
+}
