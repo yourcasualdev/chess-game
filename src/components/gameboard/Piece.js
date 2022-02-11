@@ -11,6 +11,11 @@ import P from '../../assets/images/pawn_w.png';
 import n from '../../assets/images/knight_b.png';
 import N from '../../assets/images/knight_w.png';
 
+import { ItemTypes } from './ItemTypes';
+
+import { DndProvider, useDrag } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
+
 const pieceMap = (piece) => {
     switch (piece) {
         case 'b':
@@ -43,11 +48,23 @@ const pieceMap = (piece) => {
 }
 
 
-const Piece = ({ piece }) => {
+
+
+
+const Piece = ({ piece, coordinates }) => {
+    const [{ isDragging }, drag] = useDrag(() => ({
+        type: ItemTypes.PIECE,
+        collect: (monitor) => ({
+            isDragging: !!monitor.isDragging(),
+            coordinates: coordinates
+
+        })
+    }
+    ))
 
     return (
         <>
-            {pieceMap(piece) ? <img src={pieceMap(piece)} alt={piece} /> : null}
+            {pieceMap(piece) ? <img src={pieceMap(piece)} alt={piece} className="piece" id={piece} ref={drag} /> : null}
         </>
     )
 }
