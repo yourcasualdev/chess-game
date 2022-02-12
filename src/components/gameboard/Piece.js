@@ -52,7 +52,7 @@ const pieceMap = (piece) => {
 
 
 const Piece = ({ piece, coordinates }) => {
-    const [{ isDragging }, drag] = useDrag(() => ({
+    const [, drag] = useDrag(() => ({
         item: { coordinates },
         type: ItemTypes.PIECE,
         collect: (monitor) => ({

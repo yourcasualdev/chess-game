@@ -12,7 +12,7 @@ const Square = ({ xAxis, yAxis, piece, setGameStatus, gameStatus }) => {
     const isBlack = (xAxis + yAxis) % 2 === 0;
 
 
-    const movePiece = (from, to) => {
+    const movePiece = async (from, to) => {
         const coordinateMap = {
             "00": "a8",
             "01": "b8",
@@ -79,13 +79,13 @@ const Square = ({ xAxis, yAxis, piece, setGameStatus, gameStatus }) => {
         }
 
         const fenBoard = new FENBoard(gameStatus);
-        fenBoard.move(coordinateMap[from], coordinateMap[to]);
-        setGameStatus(fenBoard.fen);
+        await fenBoard.move(coordinateMap[from], coordinateMap[to]);
+        await setGameStatus(fenBoard.fen);
     }
 
 
 
-    const [{ isOver }, drop] = useDrop(() => ({
+    const [, drop] = useDrop(() => ({
         accept: ItemTypes.PIECE,
         drop: (object) => {
             console.log('Move piece from ' + object.coordinates + ' to ' + squareClass);

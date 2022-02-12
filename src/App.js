@@ -5,6 +5,8 @@ import { useState, useEffect } from 'react';
 function App() {
   const [gameStatus, setGameStatus] = useState('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1');
 
+  useEffect(() => { console.log('App gameStatus: ' + gameStatus) }, [gameStatus]);
+
   return (
     <div className="App">
       <GameBoard gameStatus={gameStatus} setGameStatus={setGameStatus} />

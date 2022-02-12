@@ -8,23 +8,27 @@ import { HTML5Backend } from 'react-dnd-html5-backend'
 
 
 
-const GameBoard = ({ gameStatus, props, setGameStatus }) => {
+const GameBoard = ({ gameStatus, setGameStatus }) => {
     const [board, setBoard] = useState([]);
 
     useEffect(() => {
-        const boardArr = [];
-        //FENboard to array
-        const fenBoard = new FENBoard(gameStatus);
+        const drawBoard = async () => {
+            const boardArr = [];
+            //FENboard to array
+            const fenBoard = new FENBoard(gameStatus);
 
-        for (let x = 0; x <= 7; x++) {
-            for (let y = 0; y < 8; y++) {
-                const piece = fenBoard.board[x][y];
-                boardArr.push(<Square xAxis={x} yAxis={y} key={`${x}${y}`} piece={piece} setGameStatus={setGameStatus} gameStatus={gameStatus} />)
+            for (let x = 0; x <= 7; x++) {
+                for (let y = 0; y < 8; y++) {
+                    const piece = fenBoard.board[x][y];
+                    boardArr.push(<Square xAxis={x} yAxis={y} key={`${x}${y}`} piece={piece} setGameStatus={setGameStatus} gameStatus={gameStatus} />)
+                }
+
             }
+            setBoard(boardArr);
+            console.log('Game Board' + gameStatus);
 
         }
-        setBoard(boardArr);
-        console.log(gameStatus);
+        (async () => drawBoard())();
     }, [gameStatus]);
 
 
