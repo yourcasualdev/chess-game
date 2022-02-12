@@ -53,14 +53,14 @@ const pieceMap = (piece) => {
 
 const Piece = ({ piece, coordinates }) => {
     const [{ isDragging }, drag] = useDrag(() => ({
+        item: { coordinates },
         type: ItemTypes.PIECE,
         collect: (monitor) => ({
             isDragging: !!monitor.isDragging(),
             coordinates: coordinates
 
         })
-    }
-    ))
+    }))
 
     return (
         <>

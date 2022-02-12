@@ -88,8 +88,8 @@ const Square = ({ xAxis, yAxis, piece, setGameStatus, gameStatus }) => {
     const [{ isOver }, drop] = useDrop(() => ({
         accept: ItemTypes.PIECE,
         drop: (object) => {
-            movePiece("74", squareClass);
-            // console.log(object)
+            console.log('Move piece from ' + object.coordinates + ' to ' + squareClass);
+            movePiece(object.coordinates, squareClass);
         },
         collect: monitor => ({
             isOver: !!monitor.isOver(),
